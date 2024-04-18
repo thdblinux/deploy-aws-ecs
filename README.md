@@ -14,7 +14,7 @@ Em essência, ambas as estratégias têm o mesmo objetivo: permitir a implantaç
 ## DNS configurataion public IP
 ![alt text](/assets/mando8.png)
 
-## Segurança 
+## security and finops 
 
 Qual é a diferença entre hashtag#AWS NAT Gateway e Internet Gateway? 
 
