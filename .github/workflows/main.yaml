@@ -1,0 +1,88 @@
+name: Deploy to Amazon ECS
+on:
+  push:
+    paths:
+      - "app/**"
+    branches:
+      - main
+env:
+  AWS_REGION: us-east-1
+  ECS_CLUSTER: app_cluster
+  CONTAINER_NAME: app
+  ECS_SERVICE: app_service
+  ECS_TD: .github/workflows/td.json
+  ECR_REGISTRY: 242451166731.dkr.ecr.us-east-1.amazonaws.com
+  ECR_REPOSITORY: app_repo
+  IMAGE_TAG: ${{ github.sha }}
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+        
+      - name: Trivy file scan
+        run: trivy fs . > trivyfs.txt
+        
+      - name: Docker Scout Scan
+        run: |
+          docker-scout quickview fs://.
+          docker-scout cves fs://.
+        env:
+          DOCKER_CLI_ACI: 1
+
+      - name: Image scan
+        run: trivy image $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG > trivyimage.txt
+
+      - name: Docker Scout Image Scan
+        run: |
+          docker-scout quickview $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker-scout cves $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        run: |
+          cd app
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def-1
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ env.ECS_TD }}
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ steps.build-image.outputs.image }}
+
+      - name: Filter task definition
+        run: |
+          echo $(cat task-definition.json | jq 'del(
+            .taskDefinitionArn,
+            .requiresAttributes,
+            .compatibilities,
+            .revision,
+            .status,
+            .registeredAt,
+            .registeredBy
+          )') > task-definition.json
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def-1.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true
