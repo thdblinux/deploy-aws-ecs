@@ -47,3 +47,27 @@ Priorizamos a observabilidade e a confiabilidade para garantir que nossa aplica�
 Essas ferramentas trabalham em conjunto para garantir que tenhamos uma visão abrangente do nosso ambiente de produção, permitindo-nos detectar e responder a problemas de forma proativa, garantindo assim a confiabilidade contínua da nossa aplicação na AWS ECS.
 - **CloudWatch:** Além disso, utilizamos o CloudWatch da AWS que por default ja fica associado a configuração do
 ECS para monitoramento e gerenciamento de recursos na nuvem. Ele nos  nos fornece informações detalhadas sobre o desempenho dos serviços e nos permite configurar alarmes para eventos importantes, garantindo uma operação contínua e confiável da nossa aplicação na AWS ECS.
+
+## Links Refernces para a documentação das tecnologias utilizadas no projeto:
+
+- [AWS caculator](https://calculator.aws/#/addService)
+- [AWS Cloduwatch](https://aws.amazon.com/pt/cloudwatch/getting-started/)
+- [AWS VPC peering](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-peering.html)
+- [Docker Builder Reference](https://docs.docker.com/engine/reference/builder/)
+- [Docker Scout](https://docs.docker.com/scout/install/)
+- [Acqua Security Tryvi](https://aquasecurity.github.io/trivy/v0.49/)
+- [Prometheus](https://prometheus.io/docs/prometheus/latest/installation//)
+- [Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/)
+- [Alert manager](https://prometheus.io/docs/alerting/latest/configuration/)
+- [Sonarqube](https://www.sonarsource.com/products/sonarqube/)
+- [Terraform AWS Getting Started ECS](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service)
+- [Terraform AWS Getting Started ALB](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb)
+- [Terraform AWS Resource Tagging Guide](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging)
+- [Terraform AWS VPC Module](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/2.15.0)
+- [Terraform AWS Getting Started ECR resource](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository)
+- [Terraform AWS EC2 ](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance)
+- [Terraform Resource launch template](https://registry.terraform.io/providers/-/aws/5.1.0/docs/resources/launch_template)
+- [Terraform AWS Getting Started ECR data](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ecr_repository)
+- [Terraform Configuration Language Guide](https://developer.hashicorp.com/terraform/tutorials/configuration-language/variables)
+- [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
+- [Deploy to Amazon ECS](https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-amazon-elastic-container-service)
