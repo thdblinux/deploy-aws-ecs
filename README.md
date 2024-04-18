@@ -16,7 +16,7 @@ Em essência, ambas as estratégias têm o mesmo objetivo: permitir a implantaç
 
 ## Security and Finops 
 
-Qual é a diferença entre hashtag#AWS NAT Gateway e Internet Gateway? 
+Qual é a diferença entre AWS NAT Gateway e Internet Gateway? 
 
 Ambos facilitam o fluxo de internet para a infraestrutura AWS. Ambos são anexados a sub-redes usando tabelas de roteamento.
 
