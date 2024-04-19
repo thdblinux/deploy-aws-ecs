@@ -18,12 +18,15 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"]
 }
 
+data "aws_availability_zones" "available" {}
+
+
 resource "aws_instance" "monitoring" {
   ami             = data.aws_ami.ubuntu.id
   instance_type   = "t3.medium"
   key_name        = "k8s"
   security_groups = [aws_security_group.sg.id]
-  subnet_id       = aws_subnet.sn1.id
+  subnet_id       = aws_subnet.subnet[0].id  # Escolha uma subnet específica, como a primeira da lista
 
   root_block_device {
     volume_size           = 25
@@ -36,6 +39,7 @@ resource "aws_instance" "monitoring" {
     Name = "monitoring"
   }
 }
+
 
 resource "aws_launch_template" "ecs_lt" {
   name_prefix   = "ecs-template"

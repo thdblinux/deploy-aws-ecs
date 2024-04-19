@@ -2,13 +2,14 @@ resource "aws_lb" "ecs_alb" {
   name               = "ecs-alb"
   internal           = false
   load_balancer_type = "application"
-  subnets            = [aws_subnet.sn1.id, aws_subnet.sn2.id, aws_subnet.sn3.id]
+  subnets            = aws_subnet.subnet[*].id
   security_groups    = [aws_security_group.sg.id]
 
   tags = {
     Name = "ecs-alb"
   }
 }
+
 
 resource "aws_lb_listener" "ecs_alb_listener" {
   load_balancer_arn = aws_lb.ecs_alb.arn

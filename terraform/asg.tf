@@ -1,11 +1,11 @@
 resource "aws_autoscaling_group" "ecs_asg" {
-  name_prefix     = "ECS_ASG"
-  vpc_zone_identifier = [aws_subnet.sn1.id, aws_subnet.sn2.id, aws_subnet.sn3.id]
-  desired_capacity    = 2
-  max_size            = 3
-  min_size            = 1
-  health_check_type     = "EC2"
-  termination_policies  = ["OldestInstance"]
+  name_prefix          = "ECS_ASG"
+  vpc_zone_identifier  = aws_subnet.subnet[*].id
+  desired_capacity     = 2
+  max_size             = 3
+  min_size             = 1
+  health_check_type    = "EC2"
+  termination_policies = ["OldestInstance"]
 
   launch_template {
     id      = aws_launch_template.ecs_lt.id

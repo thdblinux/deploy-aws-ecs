@@ -3,30 +3,22 @@ resource "aws_vpc" "vpc" {
   instance_tenancy     = "default"
   enable_dns_hostnames = true
   tags = {
-    Name = "ECS_VPC"
+    Name = "terraform-aws-vpc"
   }
 }
 
-resource "aws_subnet" "sn1" {
-  cidr_block              = "10.0.1.0/24"
+resource "aws_subnet" "subnet" {
+  count                   = 3
   vpc_id                  = aws_vpc.vpc.id
-  availability_zone       = "us-east-1a"
+  availability_zone       = element(data.aws_availability_zones.available.names, count.index)
+  cidr_block              = "10.0.${count.index}.0/24"
   map_public_ip_on_launch = true
+
+  tags = {
+    Name = "subnet-tf-${count.index}"
+  }
 }
 
-resource "aws_subnet" "sn2" {
-  cidr_block              = "10.0.2.0/24"
-  vpc_id                  = aws_vpc.vpc.id
-  availability_zone       = "us-east-1b"
-  map_public_ip_on_launch = true
-}
-
-resource "aws_subnet" "sn3" {
-  cidr_block              = "10.0.3.0/24"
-  vpc_id                  = aws_vpc.vpc.id
-  availability_zone       = "us-east-1c"
-  map_public_ip_on_launch = true
-}
 
 resource "aws_security_group" "sg" {
   name   = "sg"
@@ -108,15 +100,15 @@ resource "aws_route_table" "rt" {
 
 resource "aws_route_table_association" "route1" {
   route_table_id = aws_route_table.rt.id
-  subnet_id      = aws_subnet.sn1.id
+  subnet_id      = aws_subnet.subnet[0].id
 }
 
 resource "aws_route_table_association" "route2" {
   route_table_id = aws_route_table.rt.id
-  subnet_id      = aws_subnet.sn2.id
+  subnet_id      = aws_subnet.subnet[1].id
 }
 
 resource "aws_route_table_association" "route3" {
   route_table_id = aws_route_table.rt.id
-  subnet_id      = aws_subnet.sn3.id
+  subnet_id      = aws_subnet.subnet[2].id
 }
