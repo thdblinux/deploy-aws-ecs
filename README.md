@@ -23,13 +23,13 @@ Ambos facilitam o fluxo de internet para a infraestrutura AWS. Ambos são anexad
 Veja como eles se diferem
 
 
-🌐 Internet Gateway hashtag#IGW
+🌐 Internet Gateway IGW
 👉 Permite que instâncias ou recursos em uma subnet pública iniciem solicitações para a Internet. Também permite que solicitações de entrada iniciadas pela Internet cheguem a essas instâncias usando seu endereço IP público.
 👉 Usado para instâncias públicas que precisam de saída para a Internet e também permitem tráfego de entrada da Internet (por exemplo, Load Balancer como NginX, servidores API/Frontend, etc.)
 👉 Você só é cobrado pela transferência de dados. Não há cobrança pelo gateway em si.
 
 
-🌐 NAT Gateway hashtag#NAT
+🌐 NAT Gateway NAT
 👉 Permite que instâncias em uma sub-rede privada iniciem solicitações para a Internet. Mas não permite que solicitações de entrada iniciadas na Internet cheguem a essas instâncias.
 👉 É mais seguro porque protege seus servidores do mundo exterior.
 👉 Usado para instâncias privadas que requerem acesso à Internet (por exemplo, máquinas de banco de dados, API's, etc.).
