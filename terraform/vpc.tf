@@ -7,6 +7,8 @@ resource "aws_vpc" "vpc" {
   }
 }
 
+data "aws_availability_zones" "available" {}
+
 resource "aws_subnet" "subnet" {
   count                   = 3
   vpc_id                  = aws_vpc.vpc.id
