@@ -16,20 +16,20 @@ Em essência, ambas as estratégias têm o mesmo objetivo: permitir a implantaç
 
 ## Security and Finops 
 
-Qual é a diferença entre hashtag#AWS NAT Gateway e Internet Gateway? 
+Qual é a diferença entre AWS NAT Gateway e Internet Gateway? 
 
 Ambos facilitam o fluxo de internet para a infraestrutura AWS. Ambos são anexados a sub-redes usando tabelas de roteamento.
 
 Veja como eles se diferem
 
 
-🌐 Internet Gateway hashtag#IGW
+🌐 Internet Gateway IGW
 👉 Permite que instâncias ou recursos em uma subnet pública iniciem solicitações para a Internet. Também permite que solicitações de entrada iniciadas pela Internet cheguem a essas instâncias usando seu endereço IP público.
 👉 Usado para instâncias públicas que precisam de saída para a Internet e também permitem tráfego de entrada da Internet (por exemplo, Load Balancer como NginX, servidores API/Frontend, etc.)
 👉 Você só é cobrado pela transferência de dados. Não há cobrança pelo gateway em si.
 
 
-🌐 NAT Gateway hashtag#NAT
+🌐 NAT Gateway NAT
 👉 Permite que instâncias em uma sub-rede privada iniciem solicitações para a Internet. Mas não permite que solicitações de entrada iniciadas na Internet cheguem a essas instâncias.
 👉 É mais seguro porque protege seus servidores do mundo exterior.
 👉 Usado para instâncias privadas que requerem acesso à Internet (por exemplo, máquinas de banco de dados, API's, etc.).
@@ -51,8 +51,8 @@ ECS para monitoramento e gerenciamento de recursos na nuvem. Ele nos  nos fornec
 ## Links Refernces para a documentação das tecnologias utilizadas no projeto:
 
 - [AWS caculator](https://calculator.aws/#/addService)
-- [Terraform Manage AWS Auto Scaling Groups](https://developer.hashicorp.com/terraform/tutorials/aws/aws-asg)
-- [Terraform Resource AWS Auto Scaling Groups](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group)
+- [Terraform Manage AWS Auto Scaling Groups ASG](https://developer.hashicorp.com/terraform/tutorials/aws/aws-asg)
+- [Terraform Resource AWS Auto Scaling Groups ASG](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group)
 - [AWS Cloduwatch](https://aws.amazon.com/pt/cloudwatch/getting-started/)
 - [AWS VPC peering](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-peering.html)
 - [Docker Builder Reference](https://docs.docker.com/engine/reference/builder/)
