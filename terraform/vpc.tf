@@ -1,6 +1,8 @@
 resource "aws_vpc" "vpc" {
   cidr_block           = "10.0.0.0/16"
+  assign_generated_ipv6_cidr_block = true
   instance_tenancy     = "default"
+  enable_dns_support   = true
   enable_dns_hostnames = true
   tags = {
     Name = "terraform-aws-vpc"
@@ -21,6 +23,18 @@ resource "aws_subnet" "subnet" {
   }
 }
 
+resource "aws_lb_target_group" "http" {
+  name_prefix     = "http-"
+  target_type     = "instance"
+  protocol        = "TCP"
+  port            = "80"
+  ip_address_type = "ipv6"
+  vpc_id          = aws_vpc.vpc.id
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
 
 resource "aws_security_group" "sg" {
   name   = "sg"
