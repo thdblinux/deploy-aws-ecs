@@ -48,6 +48,12 @@ Essas ferramentas trabalham em conjunto para garantir que tenhamos uma visão ab
 - **CloudWatch:** Além disso, utilizamos o CloudWatch da AWS que por default ja fica associado a configuração do
 ECS para monitoramento e gerenciamento de recursos na nuvem. Ele nos  nos fornece informações detalhadas sobre o desempenho dos serviços e nos permite configurar alarmes para eventos importantes, garantindo uma operação contínua e confiável da nossa aplicação na AWS ECS.
 
+![alt text](/assets/mando10.png)
+![alt text](/assets/mando%2011.png)
+![alt text](/assets/mando%2013.png)
+![alt text](/assets/mando%2014.png)
+![alt text](/assets/mando%2015.png)
+
 ## Links Refernces para a documentação das tecnologias utilizadas no projeto:
 
 - [AWS caculator](https://calculator.aws/#/addService)
@@ -59,6 +65,7 @@ ECS para monitoramento e gerenciamento de recursos na nuvem. Ele nos  nos fornec
 - [Docker Scout](https://docs.docker.com/scout/install/)
 - [Acqua Security Tryvi](https://aquasecurity.github.io/trivy/v0.49/)
 - [Prometheus](https://prometheus.io/docs/prometheus/latest/installation//)
+- [Prometheus Blackbox Exporter](https://github.com/prometheus/blackbox_exporter)
 - [Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/)
 - [Alert manager](https://prometheus.io/docs/alerting/latest/configuration/)
 - [Sonarqube](https://www.sonarsource.com/products/sonarqube/)

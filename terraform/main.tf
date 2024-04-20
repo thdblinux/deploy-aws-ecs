@@ -23,7 +23,7 @@ resource "aws_instance" "monitoring" {
   instance_type   = "t3.medium"
   key_name        = "k8s"
   security_groups = [aws_security_group.sg.id]
-  subnet_id       = aws_subnet.subnet[0].id # Escolha uma subnet específica, como a primeira da lista
+  subnet_id       = aws_subnet.subnet[0].id 
 
   root_block_device {
     volume_size           = 25
