@@ -2,6 +2,15 @@ provider "aws" {
   region = "us-east-1"
 }
 
+terraform {
+  backend "s3" {
+    bucket         = "matrioska-kan"
+    key            = "terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
+  }
+}
+
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -14,8 +23,21 @@ data "aws_ami" "ubuntu" {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-
   owners = ["099720109477"]
+}
+
+resource "aws_s3_bucket" "b" {
+  bucket = "matrioska-kan"
+  acl    = "private"
+
+  versioning {
+    enabled = true
+  }
+
+  tags = {
+    Name        = "beskar"
+    Environment = "Stg"
+  }
 }
 
 resource "aws_instance" "monitoring" {
@@ -44,6 +66,7 @@ resource "aws_launch_template" "ecs_lt" {
 
   key_name               = "k8s"
   vpc_security_group_ids = [aws_security_group.sg.id]
+  
   iam_instance_profile {
     name = "ecsInstanceRole"
   }
