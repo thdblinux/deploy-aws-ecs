@@ -69,6 +69,13 @@ ECS para monitoramento e gerenciamento de recursos na nuvem. Ele nos  nos fornec
 ## Tryvi scan diagnostic vulnerability
 ![alt text](/assets/mando17.png)
 
+## Bucket S3
+![alt text](/assets/mando19.png)
+
+## Terraform uploading terraform.tfstate
+![alt text](/assets/mando18.png)
+
+
 ## Links Refernces para a documentação das tecnologias utilizadas no projeto:
 
 - [AWS caculator](https://calculator.aws/#/addService)
@@ -84,6 +91,8 @@ ECS para monitoramento e gerenciamento de recursos na nuvem. Ele nos  nos fornec
 - [Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/debian/)
 - [Alert manager](https://prometheus.io/docs/alerting/latest/configuration/)
 - [Sonarqube](https://www.sonarsource.com/products/sonarqube/)
+- [Terraform Resource AWS Uploading a file to a bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object?ajs_aid=8b01d76d-0638-45bf-a23e-5dcb52151626&product_intent=terraform)
+- [Terraform Backend S3](https://developer.hashicorp.com/terraform/language/settings/backends/s3)
 - [Terraform AWS Getting Started ECS](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecs_service)
 - [Terraform AWS Getting Started ALB](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb)
 - [Terraform AWS Resource Tagging Guide](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/guides/resource-tagging)

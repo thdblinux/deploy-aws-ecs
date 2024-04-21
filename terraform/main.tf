@@ -2,6 +2,22 @@ provider "aws" {
   region = "us-east-1"
 }
 
+
+resource "aws_s3_bucket" "b" {
+  bucket = "matrioska-kan"
+  acl    = "private"
+  force_destroy = true
+
+  versioning {
+    enabled = true
+  }
+
+  tags = {
+    Name        = "beskar"
+    Environment = "Stg"
+  }
+}
+
 terraform {
   backend "s3" {
     bucket         = "matrioska-kan"
@@ -26,20 +42,6 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"]
 }
 
-resource "aws_s3_bucket" "b" {
-  bucket = "matrioska-kan"
-  acl    = "private"
-  force_destroy = false
-
-  versioning {
-    enabled = true
-  }
-
-  tags = {
-    Name        = "beskar"
-    Environment = "Stg"
-  }
-}
 
 resource "aws_instance" "monitoring" {
   ami             = data.aws_ami.ubuntu.id
