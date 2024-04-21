@@ -29,6 +29,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_s3_bucket" "b" {
   bucket = "matrioska-kan"
   acl    = "private"
+  force_destroy = false
 
   versioning {
     enabled = true

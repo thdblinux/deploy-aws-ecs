@@ -48,11 +48,26 @@ Essas ferramentas trabalham em conjunto para garantir que tenhamos uma visão ab
 - **CloudWatch:** Além disso, utilizamos o CloudWatch da AWS que por default ja fica associado a configuração do
 ECS para monitoramento e gerenciamento de recursos na nuvem. Ele nos  nos fornece informações detalhadas sobre o desempenho dos serviços e nos permite configurar alarmes para eventos importantes, garantindo uma operação contínua e confiável da nossa aplicação na AWS ECS.
 
+## Prometheus metrcis
 ![alt text](/assets/mando10.png)
+
+## Grafana Dashboard
 ![alt text](/assets/mando%2011.png)
+
+## ECS Health and Metrics
 ![alt text](/assets/mando%2013.png)
+
+## ECR Image container
 ![alt text](/assets/mando%2014.png)
+
+## Website Front-end
 ![alt text](/assets/mando%2015.png)
+
+## Docker scout diagnostic vulnerability
+![alt text](/assets/mando16.png)
+
+## Tryvi scan diagnostic vulnerability
+![alt text](/assets/mando17.png)
 
 ## Links Refernces para a documentação das tecnologias utilizadas no projeto:
 
