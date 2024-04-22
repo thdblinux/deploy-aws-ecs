@@ -50,7 +50,7 @@ ECS para monitoramento e gerenciamento de recursos na nuvem. Ele nos  nos fornec
 
 ## Security
 
-- **Terrafomr Bucket S3 Armazenamento do arquivo terraform.tfstate:**
+- **Terraform Bucket S3 Armazenamento do arquivo terraform.tfstate:**
 Utilizamos um bucket S3 para armazenar o arquivo `terraform.tfstate`. Isso nos permite manter um controle de estado remoto e compartilhado entre a equipe, garantindo consistência e segurança no provisionamento da infraestrutura.
 
 - **SonarQube:**
