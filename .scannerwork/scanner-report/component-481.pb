@@ -1,1 +1,1 @@
-á 2	terraformX^hrterraform/main.tf
+á 2	terraformXhrterraform/outputs.tf

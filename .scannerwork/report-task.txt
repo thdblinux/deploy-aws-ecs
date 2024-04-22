@@ -2,5 +2,5 @@ projectKey=node-app
 serverUrl=http://172.17.36.100:9000
 serverVersion=9.9.4.87374
 dashboardUrl=http://172.17.36.100:9000/dashboard?id=node-app
-ceTaskId=AY8FfyomdTwEAMLTBewq
-ceTaskUrl=http://172.17.36.100:9000/api/ce/task?id=AY8FfyomdTwEAMLTBewq
+ceTaskId=AY8GSLVxdTwEAMLTBewr
+ceTaskUrl=http://172.17.36.100:9000/api/ce/task?id=AY8GSLVxdTwEAMLTBewr

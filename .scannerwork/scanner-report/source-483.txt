@@ -1,49 +1,130 @@
-resource "aws_ecs_cluster" "ecs" {
-  name = "app_cluster"
+resource "aws_vpc" "vpc" {
+  cidr_block                       = "10.0.0.0/16"
+  assign_generated_ipv6_cidr_block = true
+  instance_tenancy                 = "default"
+  enable_dns_support               = true
+  enable_dns_hostnames             = true
+  tags = {
+    Name = "terraform-aws-vpc"
+  }
 }
 
-resource "aws_ecs_task_definition" "task_def" {
-  execution_role_arn       = "arn:aws:iam::242451166731:role/ecsTaskExecutionRole"
-  task_role_arn            = "arn:aws:iam::242451166731:role/ecsTaskExecutionRole"
-  family                   = "app"
-  requires_compatibilities = ["FARGATE"]
-  network_mode             = "awsvpc"
-  cpu                      = 2048
-  memory                   = 4096
-  container_definitions    = <<TASK_DEFINITION
-[
-  {
-    "name": "app",
-    "image": "242451166731.dkr.ecr.us-east-1.amazonaws.com/app_repo",
-    "cpu": 2048,
-    "memoryReservation": 4096,
-    "essential": true,
-    "portMappings": [
-      {
-        "containerPort": 80,
-        "hostPort": 80,
-        "protocol": "tcp"
-      }
-    ]
+data "aws_availability_zones" "available" {}
+
+resource "aws_subnet" "subnet" {
+  count                   = 3
+  vpc_id                  = aws_vpc.vpc.id
+  availability_zone       = element(data.aws_availability_zones.available.names, count.index)
+  cidr_block              = "10.0.${count.index}.0/24"
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name = "subnet-tf-${count.index}"
   }
-]
-TASK_DEFINITION
 }
 
-resource "aws_ecs_service" "service" {
-  name                   = "app_service"
-  cluster                = aws_ecs_cluster.ecs.arn
-  enable_execute_command = true
-  launch_type            = "FARGATE"
+resource "aws_lb_target_group" "http" {
+  name_prefix     = "http-"
+  target_type     = "instance"
+  protocol        = "TCP"
+  port            = "80"
+  ip_address_type = "ipv6"
+  vpc_id          = aws_vpc.vpc.id
 
-  deployment_maximum_percent         = 200
-  deployment_minimum_healthy_percent = 100
-  desired_count                      = 1
-  task_definition                    = aws_ecs_task_definition.task_def.arn
-
-  network_configuration {
-    assign_public_ip = true
-    subnets          = aws_subnet.subnet[*].id
-    security_groups  = [aws_security_group.sg.id]
+  lifecycle {
+    create_before_destroy = true
   }
+}
+
+resource "aws_security_group" "sg" {
+  name   = "sg"
+  vpc_id = aws_vpc.vpc.id
+
+  ingress {
+    description = "https"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "http"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "http"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "http"
+    from_port   = 9100
+    to_port     = 9100
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "http"
+    from_port   = 9090
+    to_port     = 9090
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "http"
+    from_port   = 3000
+    to_port     = 3000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.vpc.id
+}
+
+resource "aws_route_table" "rt" {
+  vpc_id = aws_vpc.vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.gw.id
+  }
+
+  route {
+    ipv6_cidr_block = "::/0"
+    gateway_id      = aws_internet_gateway.gw.id
+  }
+}
+
+resource "aws_route_table_association" "route1" {
+  route_table_id = aws_route_table.rt.id
+  subnet_id      = aws_subnet.subnet[0].id
+}
+
+resource "aws_route_table_association" "route2" {
+  route_table_id = aws_route_table.rt.id
+  subnet_id      = aws_subnet.subnet[1].id
+}
+
+resource "aws_route_table_association" "route3" {
+  route_table_id = aws_route_table.rt.id
+  subnet_id      = aws_subnet.subnet[2].id
 }

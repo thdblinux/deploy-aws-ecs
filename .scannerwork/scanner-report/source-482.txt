@@ -1,130 +1,93 @@
-resource "aws_vpc" "vpc" {
-  cidr_block                       = "10.0.0.0/16"
-  assign_generated_ipv6_cidr_block = true
-  instance_tenancy                 = "default"
-  enable_dns_support               = true
-  enable_dns_hostnames             = true
-  tags = {
-    Name = "terraform-aws-vpc"
-  }
+provider "aws" {
+  region = "us-east-1"
 }
 
-data "aws_availability_zones" "available" {}
 
-resource "aws_subnet" "subnet" {
-  count                   = 3
-  vpc_id                  = aws_vpc.vpc.id
-  availability_zone       = element(data.aws_availability_zones.available.names, count.index)
-  cidr_block              = "10.0.${count.index}.0/24"
-  map_public_ip_on_launch = true
+resource "aws_s3_bucket" "b" {
+  bucket = "matrioska-kan"
+  acl    = "private"
+  force_destroy = true
+
+  versioning {
+    enabled = true
+  }
 
   tags = {
-    Name = "subnet-tf-${count.index}"
+    Name        = "beskar"
+    Environment = "Stg"
   }
 }
 
-resource "aws_lb_target_group" "http" {
-  name_prefix     = "http-"
-  target_type     = "instance"
-  protocol        = "TCP"
-  port            = "80"
-  ip_address_type = "ipv6"
-  vpc_id          = aws_vpc.vpc.id
-
-  lifecycle {
-    create_before_destroy = true
+terraform {
+  backend "s3" {
+    bucket         = "matrioska-kan"
+    key            = "terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
   }
 }
 
-resource "aws_security_group" "sg" {
-  name   = "sg"
-  vpc_id = aws_vpc.vpc.id
+data "aws_ami" "ubuntu" {
+  most_recent = true
 
-  ingress {
-    description = "https"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
   }
 
-  ingress {
-    description = "http"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+  owners = ["099720109477"]
+}
+
+
+resource "aws_instance" "monitoring" {
+  ami             = data.aws_ami.ubuntu.id
+  instance_type   = "t3.medium"
+  key_name        = "k8s"
+  security_groups = [aws_security_group.sg.id]
+  subnet_id       = aws_subnet.subnet[0].id 
+
+  root_block_device {
+    volume_size           = 25
+    encrypted             = true
+    volume_type           = "gp3"
+    delete_on_termination = true
   }
 
-  ingress {
-    description = "http"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "http"
-    from_port   = 9100
-    to_port     = 9100
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "http"
-    from_port   = 9090
-    to_port     = 9090
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "http"
-    from_port   = 3000
-    to_port     = 3000
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+  tags = {
+    Name = "monitoring"
   }
 }
 
-resource "aws_internet_gateway" "gw" {
-  vpc_id = aws_vpc.vpc.id
-}
+resource "aws_launch_template" "ecs_lt" {
+  name_prefix   = "ecs-template"
+  image_id      = "ami-080e1f13689e07408"
+  instance_type = "t3.micro"
 
-resource "aws_route_table" "rt" {
-  vpc_id = aws_vpc.vpc.id
-
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.gw.id
+  key_name               = "k8s"
+  vpc_security_group_ids = [aws_security_group.sg.id]
+  
+  iam_instance_profile {
+    name = "ecsInstanceRole"
   }
 
-  route {
-    ipv6_cidr_block = "::/0"
-    gateway_id      = aws_internet_gateway.gw.id
+  block_device_mappings {
+    device_name = "/dev/xvda"
+    ebs {
+      volume_size = 30
+      volume_type = "gp2"
+    }
   }
-}
 
-resource "aws_route_table_association" "route1" {
-  route_table_id = aws_route_table.rt.id
-  subnet_id      = aws_subnet.subnet[0].id
-}
+  tag_specifications {
+    resource_type = "instance"
+    tags = {
+      Name = "ecs-instance"
+    }
+  }
 
-resource "aws_route_table_association" "route2" {
-  route_table_id = aws_route_table.rt.id
-  subnet_id      = aws_subnet.subnet[1].id
-}
-
-resource "aws_route_table_association" "route3" {
-  route_table_id = aws_route_table.rt.id
-  subnet_id      = aws_subnet.subnet[2].id
+  user_data = filebase64("${path.module}/ecs.sh")
 }

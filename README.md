@@ -47,6 +47,12 @@ Priorizamos a observabilidade e a confiabilidade para garantir que nossa aplica�
 Essas ferramentas trabalham em conjunto para garantir que tenhamos uma visão abrangente do nosso ambiente de produção, permitindo-nos detectar e responder a problemas de forma proativa, garantindo assim a confiabilidade contínua da nossa aplicação na AWS ECS.
 - **CloudWatch:** Além disso, utilizamos o CloudWatch da AWS que por default ja fica associado a configuração do
 ECS para monitoramento e gerenciamento de recursos na nuvem. Ele nos  nos fornece informações detalhadas sobre o desempenho dos serviços e nos permite configurar alarmes para eventos importantes, garantindo uma operação contínua e confiável da nossa aplicação na AWS ECS.
+- **SonarQube**
+Integramos o SonarQube ao nosso projeto para garantir a qualidade do código. O SonarQube analisa o código-fonte em busca de problemas de qualidade, bugs, vulnerabilidades de segurança e muito mais, fornecendo feedback valioso para garantir a robustez e a segurança da nossa aplicação.
+- **Docker Scout**
+O Docker Scout é utilizado para realizar varreduras de segurança nas imagens Docker, ajudando a identificar e corrigir possíveis vulnerabilidades antes da implantação. Isso ajuda a manter um ambiente mais seguro e confiável para a execução da nossa aplicação.
+- **Trivy**
+Integramos o Trivy ao nosso processo de construção de imagens Docker para identificar e corrigir quaisquer vulnerabilidades presentes nas dependências dos nossos contêineres. O Trivy fornece uma verificação de segurança rápida e abrangente, permitindo-nos garantir que nossas imagens Docker estejam livres de vulnerabilidades conhecidas.
 
 ## Prometheus metrcis
 ![alt text](/assets/mando10.png)
