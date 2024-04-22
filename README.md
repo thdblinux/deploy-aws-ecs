@@ -69,6 +69,9 @@ ECS para monitoramento e gerenciamento de recursos na nuvem. Ele nos  nos fornec
 ## Tryvi scan diagnostic vulnerability
 ![alt text](/assets/mando17.png)
 
+## Sonarqube scan code diagnostic vulnerability
+![Sonarqube](/assets/mando20.png)
+
 ## Bucket S3
 ![alt text](/assets/mando19.png)
 
