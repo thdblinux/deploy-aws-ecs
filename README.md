@@ -75,13 +75,13 @@ Integramos o Trivy ao nosso processo de construção de imagens Docker para iden
 ## Website Front-end
 ![alt text](/assets/mando%2015.png)
 
-## Docker scout diagnostic vulnerability
+## Docker diagnostic Image scan for vulnerability
 ![alt text](/assets/mando16.png)
 
-## Tryvi scan diagnostic vulnerability
+## Tryvi diagnostic Image scan for vulnerability
 ![alt text](/assets/mando17.png)
 
-## Sonarqube scan code diagnostic vulnerability
+## SonarQube diagnostic code scan for vulnerability
 ![Sonarqube](/assets/mando20.png)
 
 ## Bucket S3
