@@ -47,6 +47,12 @@ Priorizamos a observabilidade e a confiabilidade para garantir que nossa aplica�
 Essas ferramentas trabalham em conjunto para garantir que tenhamos uma visão abrangente do nosso ambiente de produção, permitindo-nos detectar e responder a problemas de forma proativa, garantindo assim a confiabilidade contínua da nossa aplicação na AWS ECS.
 - **CloudWatch:** Além disso, utilizamos o CloudWatch da AWS que por default ja fica associado a configuração do
 ECS para monitoramento e gerenciamento de recursos na nuvem. Ele nos  nos fornece informações detalhadas sobre o desempenho dos serviços e nos permite configurar alarmes para eventos importantes, garantindo uma operação contínua e confiável da nossa aplicação na AWS ECS.
+
+## Security
+
+- **Terrafomr Bucket S3 Armazenamento do arquivo terraform.tfstate:**
+Utilizamos um bucket S3 para armazenar o arquivo `terraform.tfstate`. Isso nos permite manter um controle de estado remoto e compartilhado entre a equipe, garantindo consistência e segurança no provisionamento da infraestrutura.
+
 - **SonarQube:**
 Integramos o SonarQube ao nosso projeto para garantir a qualidade do código. O SonarQube analisa o código-fonte em busca de problemas de qualidade, bugs, vulnerabilidades de segurança e muito mais, fornecendo feedback valioso para garantir a robustez e a segurança da nossa aplicação.
 - **Docker Scout:**
