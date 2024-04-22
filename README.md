@@ -41,17 +41,17 @@ Veja como eles se diferem
 
 Priorizamos a observabilidade e a confiabilidade para garantir que nossa aplicação na AWS ECS esteja sempre em funcionamento e atendendo às expectativas dos usuários. Para isso, integramos ferramentas essenciais como o` Prometheus`,` Grafana `,` Alert Manager` e o `CloudWatch`. 
 
-- **Prometheus**: Utilizamos o Prometheus para monitorar continuamente o desempenho da nossa aplicação. Ele coleta métricas vitais, como uso de CPU, memória e tempo de resposta dos serviços, oferecendo insights valiosos sobre o estado do sistema.
+- **Prometheus:** Utilizamos o Prometheus para monitorar continuamente o desempenho da nossa aplicação. Ele coleta métricas vitais, como uso de CPU, memória e tempo de resposta dos serviços, oferecendo insights valiosos sobre o estado do sistema.
 - **Grafana:** O Grafana é nossa ferramenta de visualização de métricas. Com ele, criamos dashboards personalizados que nos permitem monitorar o desempenho da aplicação de forma intuitiva e eficaz. Com gráficos e alertas configurados, podemos identificar rapidamente qualquer anomalia e tomar medidas proativas.
 - **Alert Manager:** O Alert Manager complementa nossa estratégia de observabilidade, permitindo-nos configurar alertas com base em métricas específicas. Isso nos mantém informados sobre qualquer problema que possa surgir, garantindo uma resposta rápida e eficiente para minimizar qualquer impacto negativo na experiência do usuário.
 Essas ferramentas trabalham em conjunto para garantir que tenhamos uma visão abrangente do nosso ambiente de produção, permitindo-nos detectar e responder a problemas de forma proativa, garantindo assim a confiabilidade contínua da nossa aplicação na AWS ECS.
 - **CloudWatch:** Além disso, utilizamos o CloudWatch da AWS que por default ja fica associado a configuração do
 ECS para monitoramento e gerenciamento de recursos na nuvem. Ele nos  nos fornece informações detalhadas sobre o desempenho dos serviços e nos permite configurar alarmes para eventos importantes, garantindo uma operação contínua e confiável da nossa aplicação na AWS ECS.
-- **SonarQube**
+- **SonarQube:**
 Integramos o SonarQube ao nosso projeto para garantir a qualidade do código. O SonarQube analisa o código-fonte em busca de problemas de qualidade, bugs, vulnerabilidades de segurança e muito mais, fornecendo feedback valioso para garantir a robustez e a segurança da nossa aplicação.
-- **Docker Scout**
+- **Docker Scout:**
 O Docker Scout é utilizado para realizar varreduras de segurança nas imagens Docker, ajudando a identificar e corrigir possíveis vulnerabilidades antes da implantação. Isso ajuda a manter um ambiente mais seguro e confiável para a execução da nossa aplicação.
-- **Trivy**
+- **Trivy:**
 Integramos o Trivy ao nosso processo de construção de imagens Docker para identificar e corrigir quaisquer vulnerabilidades presentes nas dependências dos nossos contêineres. O Trivy fornece uma verificação de segurança rápida e abrangente, permitindo-nos garantir que nossas imagens Docker estejam livres de vulnerabilidades conhecidas.
 
 ## Prometheus metrcis
