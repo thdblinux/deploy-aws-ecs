@@ -8,15 +8,15 @@ resource "aws_ecs_task_definition" "task_def" {
   family                   = "app"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
-  cpu                      = 2048
-  memory                   = 4096
+  cpu                      = 256
+  memory                   = 512
   container_definitions    = <<TASK_DEFINITION
 [
   {
     "name": "app",
     "image": "242451166731.dkr.ecr.us-east-1.amazonaws.com/app_repo",
-    "cpu": 2048,
-    "memoryReservation": 4096,
+    "cpu": 256,
+    "memoryReservation": 512,
     "essential": true,
     "portMappings": [
       {
