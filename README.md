@@ -91,13 +91,12 @@ Integramos o Trivy ao nosso processo de construção de imagens Docker para iden
 ![alt text](/assets/mando18.png)
 
 
-## Links Refernces para a documentação das tecnologias utilizadas no projeto:
+## Links References para a documentação das tecnologias utilizadas no projeto:
 
 - [AWS caculator](https://calculator.aws/#/addService)
 - [Terraform Manage AWS Auto Scaling Groups ASG](https://developer.hashicorp.com/terraform/tutorials/aws/aws-asg)
 - [Terraform Resource AWS Auto Scaling Groups ASG](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/autoscaling_group)
 - [AWS Cloduwatch](https://aws.amazon.com/pt/cloudwatch/getting-started/)
-- [AWS VPC peering](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-peering.html)
 - [Docker Builder Reference](https://docs.docker.com/engine/reference/builder/)
 - [Docker Scout](https://docs.docker.com/scout/install/)
 - [Acqua Security Tryvi](https://aquasecurity.github.io/trivy/v0.49/)
