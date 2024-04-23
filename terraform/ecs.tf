@@ -38,7 +38,7 @@ resource "aws_ecs_service" "service" {
 
   deployment_maximum_percent         = 200
   deployment_minimum_healthy_percent = 100
-  desired_count                      = 1
+  desired_count                      = 2
   task_definition                    = aws_ecs_task_definition.task_def.arn
 
   network_configuration {
