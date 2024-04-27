@@ -71,6 +71,16 @@ resource "aws_instance" "database" {
   subnet_id                   = aws_subnet.privsub.id
   associate_public_ip_address = true
 
+  user_data = <<-EOF
+#!/bin/bash
+echo "Iniciando a instalação do PostgreSQL..."
+apt-get update
+apt-get install -y postgresql
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+echo "Instalação do PostgreSQL concluída com sucesso!"
+EOF
+
   root_block_device {
     volume_size           = 25
     encrypted             = true

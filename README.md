@@ -33,9 +33,23 @@ Veja como eles se diferem
 👉 Permite que instâncias em uma sub-rede privada iniciem solicitações para a Internet. Mas não permite que solicitações de entrada iniciadas na Internet cheguem a essas instâncias.
 👉 É mais seguro porque protege seus servidores do mundo exterior.
 👉 Usado para instâncias privadas que requerem acesso à Internet (por exemplo, máquinas de banco de dados, API's, etc.).
-👉 Além dos custos de transferência de dados, a AWS cobra por hora para cada NAT Gateway provisionado.
+👉 Além dos custos de transferência de dados, a` AWS` cobra por hora para cada` NAT Gateway` provisionado.
 
-❗ Em caso de dúvida, use NAT Gateway para suas sub-redes. Use o IGW apenas se tiver certeza de que deseja que suas instâncias ou recursos sejam públicas.
+❗ Em caso de dúvida, use `NAT Gateway` para suas sub-redes. Use o IGW apenas se tiver certeza de que deseja que suas instâncias ou recursos sejam públicas.
+
+A seguir, apresento alguns prints como resultado de uma configuração realizada através da tabela de roteamento, utilizando também o `gateway de internet` e o `NAT gateway` em sub-redes públicas e privadas para manter a comunicação entre as instâncias EC2. Na rede pública está minha aplicação, enquanto na rede privada está meu banco de dados `PostgreSQL`. Neste exemplo, acessei remotamente via `SSH` a instância pública e configurei um servidor de salto `(jump server)` para acessar a instância na rede privada e, assim, o banco de dados.
+
+## EC2 subnet private database
+![alt text](/assets/jump8.png)
+
+## Route table private database
+![alt text](/assets/jump7.png)
+
+## VPC NAT and IGW network public database private database
+![alt text](/assets/jump6.png)
+
+## EC2 private database PostgreSQL jump server or bastion host
+![alt text](/assets/jump5.png)
 
 ## Observability and reliability
 
@@ -113,6 +127,7 @@ Integramos o Trivy ao nosso processo de construção de imagens Docker para iden
 - [Terraform AWS VPC Module](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/2.15.0)
 - [Terraform AWS Getting Started ECR resource](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ecr_repository)
 - [Terraform AWS EC2 ](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance)
+- [Terraform User data](https://registry.terraform.io/providers/serverscom/serverscom/latest/docs/guides/user-data)
 - [Terraform Resource launch template](https://registry.terraform.io/providers/-/aws/5.1.0/docs/resources/launch_template)
 - [Terraform  count Meta-Arguments](https://developer.hashicorp.com/terraform/language/meta-arguments/count)
 - [Terraform element Function](https://developer.hashicorp.com/terraform/language/functions/element)
