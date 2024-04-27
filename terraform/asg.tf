@@ -1,6 +1,6 @@
 resource "aws_autoscaling_group" "ecs_asg" {
   name_prefix          = "ECS_ASG"
-  vpc_zone_identifier  = aws_subnet.subnet[*].id
+  vpc_zone_identifier  = [aws_subnet.pubsub.id, aws_subnet.privsub.id]
   desired_capacity     = 2
   max_size             = 3
   min_size             = 1
