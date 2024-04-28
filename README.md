@@ -49,7 +49,10 @@ A seguir, apresento alguns prints como resultado de uma configuração realizada
 ![alt text](/assets/jump6.png)
 
 ## EC2 private database PostgreSQL jump server or bastion host
+![alt text](/assets/jump10.png)
+
 ![alt text](/assets/jump5.png)
+
 
 ## Observability and reliability
 
