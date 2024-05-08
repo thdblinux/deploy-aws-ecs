@@ -19,3 +19,39 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'ACRConnection' # Substitua pelo nome da sua conexão de registro de contêiner do Azure
+    repository: 'myapp'
+    command: 'build'
+    Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+  displayName: 'Build Docker Image'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'ACRConnection' # Substitua pelo nome da sua conexão de registro de contêiner do Azure
+    repository: 'myapp'
+    command: 'push'
+    Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+  displayName: 'Push Docker Image'
+
+- task: AmazonECSTask@1
+  inputs:
+    awsCredentials: 'AWSConnection' # Substitua pelo nome da sua conexão do AWS
+    regionName: 'us-west-2' # Substitua pela sua região AWS
+    taskDefinition: 'myapp-task-definition'
+    containerDefinitions: |
+      [{
+        "name": "myapp-container",
+        "image": "123456789.dkr.ecr.us-west-2.amazonaws.com/myapp:latest",
+        "essential": true,
+        "portMappings": [{
+          "containerPort": 3000,
+          "hostPort": 3000
+        }]
+      }]
+    familyName: 'myapp-family'
+    serviceName: 'myapp-service'
+    clusterName: 'my-ecs-cluster'
+  displayName: 'Deploy to ECS'
