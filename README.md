@@ -139,3 +139,63 @@ Integramos o Trivy ao nosso processo de construção de imagens Docker para iden
 - [Terraform Configuration Language Guide](https://developer.hashicorp.com/terraform/tutorials/configuration-language/variables)
 - [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
 - [Deploy to Amazon ECS](https://docs.github.com/en/actions/deployment/deploying-to-your-cloud-provider/deploying-to-amazon-elastic-container-service)
+
+## Liderança da Track
+ Track é uma Net Promoter Score e Customer Experience Management no Brasil.
+ startup brasileira fundada em 2012 na cidade de Belo Horizonte 
+ e liderada por Tomás Duarte (CEO), Luiz Carvalho (CDO) e José Luiz Choucaira (CFO)
+
+## Cultura centrada no cliente: estratégia de fidelização de clientes!
+1. Definir o foco no cliente como propósito da empresa
+2. Definir valores da empresa que reflitam esse o foco no cliente
+3. Difundir com clareza as funções  e respoonsabilidades de cada um no propósito de melhorar a vida do cliente
+4. Ouvir o cliente interno da sua empresa encontrar oportunidades de melhoria e inovação
+5. Acompanhar o mercado para compreender para onde as mudanças estão indo e aproveiotar as oportunidades
+
+## Os princípios de Centralidade no Cliente da Track.co são fundamentais para sua cultura organizacional.
+
+- 1. Cordialidade: Demonstre interesse genuíno em entender as necessidades e preocupações dos clientes. Pergunte como a empresa promove uma cultura de cordialidade em todas as interações com os clientes, tanto interna quanto externamente.
+- 2. Resolutividade: Mostre sua capacidade de resolver problemas de forma eficiente e eficaz. Você pode perguntar como a empresa lida com desafios específicos de clientes e como incentiva a resolução rápida e satisfatória.
+- 3. Data driven: Destaque a importância de tomar decisões com base em dados e métricas relevantes. Questione como a empresa utiliza dados de experiência do cliente para orientar suas estratégias e melhorar continuamente seus produtos e serviços.
+- 4. Pontualidade: Enfatize a importância de cumprir prazos e compromissos com os clientes. Você pode perguntar como a empresa garante a entrega oportuna de soluções e como isso é integrado à cultura organizacional.
+- 5. Básico bem feito: Demonstre seu compromisso com a excelência em todos os aspectos do trabalho. Questione como a empresa garante a qualidade consistente em todas as etapas da jornada do cliente e como isso se reflete em seus produtos e serviços.
+
+
+Essas dimensões realmente fornecem uma estrutura sólida para uma empresa adotar um modelo centrado no cliente. É essencial que todas elas estejam em equilíbrio para garantir uma excelente experiência do cliente. Se uma delas for negligenciada, isso pode afetar negativamente toda a operação.
+
+- 1. Pessoas comprometidas: São elas que dão vida aos processos e interagem diretamente com os clientes. Se não estiverem engajadas e comprometidas, a experiência do cliente pode ser afetada negativamente.
+- 2. Processos bem estruturados: São fundamentais para garantir consistência e eficiência na entrega da experiência do cliente. Processos mal definidos podem levar a erros, atrasos e frustrações.
+- 3. Ferramentas adequadas: Tecnologia desempenha um papel crucial na entrega de uma excelente experiência do cliente. Ferramentas inadequadas podem dificultar a interação com o cliente, prejudicar a personalização e limitar a capacidade de escalar as operações.
+- 4. Gestão eficaz: Uma liderança forte e uma gestão eficaz são essenciais para garantir que a empresa esteja alinhada com as necessidades e expectativas do cliente. Decisões baseadas em dados e insights precisos ajudam a direcionar as estratégias de experiência do cliente de forma mais eficaz.
+- 5. Cultura de foco no cliente: Esta é a cola que mantém todas as outras dimensões unidas. Uma cultura empresarial que valoriza e prioriza o cliente permeia todas as áreas da organização, garantindo que o cliente esteja sempre no centro das decisões e ações.
+Ao fortalecer essas dimensões, uma empresa pode construir uma base sólida para uma estratégia de experiência do cliente sustentável a longo prazo, o que é essencial para o sucesso nos mercados cada vez mais competitivos de hoje.
+
+## Sobre a Track.co:
+- A Track.co é uma startup pioneira na metodologia de Net Promoter Score® no Brasil, especializada em indicadores de performance da Experiência do Cliente (CX).
+- Eles têm um forte histórico de impacto, atingindo mais de 200 milhões de consumidores e 1.500 marcas em diversos países.
+- A empresa oferece uma plataforma completa para rastreamento de dados de Experiência do Cliente em toda a jornada do consumidor.
+- Eles são reconhecidos por seus indicadores de performance e monitoramento de métricas de CX.
+
+# Modelo de Negocios
+
+O modelo de negócios B2B da Track.co se concentra em fornecer soluções avançadas de rastreamento e análise de dados para empresas. Este modelo é construído em torno da prestação de serviços e plataformas personalizadas que ajudam outras empresas a otimizar suas operações, tomar decisões baseadas em dados e melhorar seu desempenho geral. A Track.co trabalha em estreita colaboração com seus clientes para entender suas necessidades específicas e oferecer soluções sob medida, aproveitando tecnologias de ponta, como inteligência artificial e análise de big data. Por meio de parcerias estratégicas e um foco contínuo na inovação, a Track.co busca proporcionar valor tangível aos seus clientes, ajudando-os a impulsionar o crescimento, aumentar a eficiência e alcançar seus objetivos de negócios.
+
+## SLA, SLO e SLI: Medindo a Confiabilidade
+- SLI (Service Level Indicator): Os SLIs são métricas quantificáveis que medem a qualidade do serviço. Eles são a base para definir SLOs e, por sua vez, contribuem para os SLAs. Por exemplo, um SLI pode ser a taxa de sucesso de uma operação.
+- SLO (Service Level Objective): Os SLOs são metas específicas de desempenho que uma equipe de SRE define para cumprir os requisitos do SLA. Eles são mais detalhados e mensuráveis, contribuindo para a definição de padrões de qualidade.
+- SLA (Service Level Agreement): Um SLA é um acordo formal entre um provedor de serviço e seus usuários, definindo os níveis aceitáveis de desempenho e disponibilidade. Ele estabelece expectativas claras e ajuda a manter um padrão elevado de serviço. Os SLAs geralmente incluem métricas como tempo de atividade e tempo de resposta.
+## Ecossistema Track.co:
+- A empresa oferece uma ampla gama de serviços, incluindo pesquisas multicanais de Net Promoter Score, plataforma de CXM para o setor de saúde e análise avançada de dados de CX através de IA generativa.
+-Em breve, eles lançarão ferramentas como categorização de feedbacks de clientes, geração de sumários de feedbacks e criação de planos de ação baseados nos feedbacks.
+
+## Perguntas sobre os Produtos e Ecossistema da Track.co:
+- 1.**Sobre a Plataforma de CXM para o setor de saúde:** "Gostaria de saber mais sobre como a plataforma de CXM da Track.co é adaptada para o setor de saúde e quais funcionalidades específicas ela oferece?"
+- 2. **Sobre a Análise de Dados de CX Avançada por meio de IA generativa:** "Como a análise de dados avançada por meio de IA generativa tem impactado positivamente a compreensão da experiência do cliente e as decisões estratégicas da empresa?"
+- 3. **Sobre os Próximos Lançamentos de Ferramentas de Feedback:** "Estou interessado nos próximos lançamentos, como a ferramenta de categorização de feedbacks de clientes. Como vocês veem essas novas ferramentas impactando a maneira como lidam com feedbacks e promovem melhorias na experiência do cliente?"
+- 4. **Sobre a Integração e Input de Dados:** "Como a integração e o input de dados são gerenciados na Track.co para garantir uma visão abrangente e precisa da experiência do cliente em todas as etapas da jornada?"
+  
+
+Considerações Finais:
+Certifique-se de estar familiarizado com os valores e princípios da empresa, demonstrando seu alinhamento cultural durante a entrevista.
+Prepare-se para compartilhar suas experiências relevantes em DevOps e SRE, destacando como suas habilidades podem contribuir para a missão e os objetivos da Track.co.
+Mantenha uma abordagem positiva e demonstra interesse genuíno pelo trabalho da empresa e pelos desafios que ela enfrenta no campo da experiência do cliente.
