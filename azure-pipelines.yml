@@ -16,7 +16,7 @@ steps:
   displayName: 'npm install and build'
 
 - script: |
-    docker build -t nosw-app ./app
+    docker build -t node_app ./app
   displayName: 'Build Docker Image'
 
 - task: trivy@1
