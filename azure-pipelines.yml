@@ -1,15 +1,5 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
 - main
-
-on:
-  push:
-    paths:
-      - "app/**"
 
 pool:
   vmImage: ubuntu-latest
@@ -24,3 +14,25 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+
+- task: ECRPullImage@1
+  inputs:
+    regionName: 'us-east-1'
+    repository: 'DeployAWS'
+
+- task: ECRPushImage@1
+  inputs:
+    regionName: 'us-east-1'
+    imageName: 'imagename'  # Corrigido: imageSource foi substituído por imageName
+    tag: 'imagetag'         # Corrigido: imageSource foi substituído por tag
+
+- task: trivy@1
+  inputs:
+    version: 'latest'
+    loginDockerConfig: true
+
+- task: SonarQubeAnalyze@5
+  inputs:
+    jdkVersion: 'JAVA_HOME_11_X64'  # Corrigido: jdkversion foi substituído por jdkVersion
+    ignoreUnfixed: true
+    devMode: true
