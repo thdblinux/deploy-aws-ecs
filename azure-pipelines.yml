@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-22.04'
 
 steps:
 - task: NodeTool@0
@@ -15,16 +15,20 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
+- script: |
+    docker build -t nosw-app ./app
+  displayName: 'Build Docker Image'
+
 - task: ECRPullImage@1
   inputs:
     regionName: 'us-east-1'
-    repository: 'DeployAWS'
+    repository: 'app_repo'
 
 - task: ECRPushImage@1
   inputs:
     regionName: 'us-east-1'
-    imageName: 'imagename'  # Corrigido: imageSource foi substituído por imageName
-    tag: 'imagetag'         # Corrigido: imageSource foi substituído por tag
+    imageName: '242451166731.dkr.ecr.us-east-1.amazonaws.com/app_repo:latest'  
+    tag: 'latest'
 
 - task: trivy@1
   inputs:
@@ -33,6 +37,6 @@ steps:
 
 - task: SonarQubeAnalyze@5
   inputs:
-    jdkVersion: 'JAVA_HOME_11_X64'  # Corrigido: jdkversion foi substituído por jdkVersion
+    jdkVersion: 'JAVA_HOME_11_X64'
     ignoreUnfixed: true
     devMode: true
