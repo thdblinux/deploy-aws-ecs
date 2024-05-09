@@ -19,17 +19,6 @@ steps:
     docker build -t nosw-app ./app
   displayName: 'Build Docker Image'
 
-- task: ECRPullImage@1
-  inputs:
-    regionName: 'us-east-1'
-    repository: 'app_repo'
-
-- task: ECRPushImage@1
-  inputs:
-    regionName: 'us-east-1'
-    imageName: '242451166731.dkr.ecr.us-east-1.amazonaws.com/app_repo:latest'  
-    tag: 'latest'
-
 - task: trivy@1
   inputs:
     version: 'latest'
@@ -40,3 +29,10 @@ steps:
     jdkVersion: 'JAVA_HOME_11_X64'
     ignoreUnfixed: true
     devMode: true
+- task: ECRPushImage@1
+  inputs:
+    awsCredentials: 'aws_connection'
+    regionName: $(AWS_REGION)
+    imageSource: $(Build.BuildId)
+    sourceImageName: $(AWS_ECR_MAGE_URI)
+    repositoryName: $(AWS_ECR_REPOSITORY_NAME)
