@@ -21,7 +21,8 @@ steps:
 - task: trivy@1
   inputs:
     version: 'latest'
-    loginDockerConfig: true
+    path: './app'
+    image: '$(AWS_ECR_MAGE_URI)'
 
 - task: SonarQubeAnalyze@5
   inputs:
