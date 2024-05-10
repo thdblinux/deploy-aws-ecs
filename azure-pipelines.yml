@@ -15,16 +15,17 @@ steps:
   displayName: 'npm install and build'
 
 - script: |
-    docker build -t node_app ./app
+    docker build -t app_repo ./app
   displayName: 'Build Docker Image'
+
 
 - task: trivy@1
   inputs:
     version: 'latest'
-    path: 'td.json'
+    path: '/td.json'
     loginDockerConfig: true
-    image: $(Build.BuildId)
-
+    image: $(AWS_ECR_MAGE_URI)
+    severities: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
 
 - task: SonarQubeAnalyze@5
   inputs:
