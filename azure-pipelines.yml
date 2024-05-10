@@ -21,9 +21,10 @@ steps:
 - task: trivy@1
   inputs:
     version: 'latest'
-    path: '/td.json'
+    path: 'td.json'
     loginDockerConfig: true
     image: $(Build.BuildId)
+
 
 - task: SonarQubeAnalyze@5
   inputs:
