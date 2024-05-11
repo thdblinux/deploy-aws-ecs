@@ -18,13 +18,12 @@ steps:
     docker build -t app_repo ./app
   displayName: 'Build Docker Image'
 
-
 - task: trivy@1
   inputs:
     version: 'latest'
-    path: '/td.json'
+    path: .
     loginDockerConfig: true
-    image: $(AWS_ECR_MAGE_URI)
+    image:  trivy image  thsre/app_repo:latest > trivyimage.txt
     severities: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
 
 - task: SonarQubeAnalyze@5
