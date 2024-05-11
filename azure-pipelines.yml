@@ -28,9 +28,9 @@ jobs:
       awsCredentials: 'aws'
       regionName: 'us-east-1'
       imageSource: 'imageid'
-      sourceImageId: '$(imageName):$(Build.Build)'
-      repositoryName: '$(repoName)'
-      pushTag: '$(Build.Build)'
+      sourceImageId: '242451166731.dkr.ecr.us-east-1.amazonaws.com/app_repo:latest'
+      repositoryName: 'app_repo'
+      pushTag: 'app_repo'
       forceDockerNamingConventions: true
         
   - task: SonarQubePrepare@5
