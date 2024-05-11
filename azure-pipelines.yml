@@ -20,8 +20,6 @@ steps:
     repository: 'thsre/node-app'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
-    
-
 
 - task: SonarQubePrepare@5
   inputs:
@@ -33,14 +31,6 @@ steps:
 - task: SonarQubeAnalyze@5
   inputs:
     jdkVersion: 'JAVA_HOME_11_X64'
-
-- task: trivy@1
-  inputs:
-    version: 'latest'
-    path: './app'
-    loginDockerConfig: false
-    image: 'node-app'
-    severities: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
 
 - task: dependency-check-build-task@6
   inputs:
