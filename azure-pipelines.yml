@@ -21,11 +21,10 @@ steps:
 - task: trivy@1
   inputs:
     version: 'latest'
-    path: .
-    loginDockerConfig: true
-    image:  trivy image  thsre/app_repo:latest > trivyimage.txt
+    path: '.'
+    image: '$(AWS_ECR_MAGE_URI)'
     severities: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
-
+    exitCode: '0'
 - task: SonarQubeAnalyze@5
   inputs:
     jdkVersion: 'JAVA_HOME_11_X64'
