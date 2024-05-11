@@ -23,7 +23,7 @@ steps:
     version: 'latest'
     image: 'app_repo'
     severities: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
-    exitCode: '0'
+    exitCode: '1'
 
 - task: SonarQubeAnalyze@5
   inputs:
