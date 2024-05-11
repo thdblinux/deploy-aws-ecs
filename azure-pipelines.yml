@@ -19,7 +19,7 @@ steps:
     scannerMode: 'CLI'
     configMode: 'manual'
     cliProjectKey: 'deploy-aws-ecs_deploy-aws-ecs_AY9oDafPz9YFo-a53DRH'
-    cliProjectName: 'deploy-aws-ecs_deploy-aws-ecs_AY9oDafPz9YFo-a53DRH'
+    cliProjectName: 'deploy-aws-ecs'
     cliSources: '.'
 - task: SonarQubeAnalyze@5
   inputs:
