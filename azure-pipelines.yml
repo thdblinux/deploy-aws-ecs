@@ -21,6 +21,14 @@ steps:
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
 
+- task: trivy@1
+  displayName: Scan repo with trivy
+  inputs:
+    version: '$(PARAMETERS_TRIVYVERSION)'
+    docker: false
+    path: '$(PARAMETERS_TRIVYSCANPATH)'
+    exitCode: '$(TRIVYEXITCODE)'
+
 - task: SonarQubePrepare@5
   inputs:
     SonarQube: 'deploy-aws-ecs'
