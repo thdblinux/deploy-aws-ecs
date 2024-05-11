@@ -45,7 +45,7 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_instance" "monitoring" {
   ami                         = data.aws_ami.ubuntu.id
-  instance_type               = "t2.micro"
+  instance_type               = "t3.medium"
   key_name                    = "k8s"
   security_groups             = [aws_security_group.sg.id]
   subnet_id                   = aws_subnet.pubsub.id
