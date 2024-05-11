@@ -27,10 +27,13 @@ steps:
     configMode: 'file'
     extraProperties: 'sonar.projectKey=node-app'
 
-- task: trivy@1
+- task: dependency-check-build-task@6
   inputs:
-    version: 'latest'
-    path: '$(Build.SourcesDirectory)'
+    projectName: 'deploy-aws-ecs'
+    scanPath: '.'
+    format: 'HTML'
+    uploadReports: true
+
 - task: trivy@1
   inputs:
     version: 'latest'
