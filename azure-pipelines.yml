@@ -19,7 +19,7 @@ jobs:
   - task: Docker@2
     inputs:
       containerRegistry: 'docker'
-      repository: 'thsre/node-app'
+      repository: 'thsre/app_repo'
       command: 'buildAndPush'
       Dockerfile: '**/Dockerfile'
 
