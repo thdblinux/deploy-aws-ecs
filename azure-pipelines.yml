@@ -25,7 +25,7 @@ jobs:
 
   - task: ECRPushImage@1
     inputs:
-      awsCredentials: 'aws_credentials'
+      awsCredentials: 'aws'
       regionName: 'us-east-1'
       imageSource: 'imageid'
       sourceImageId: '242451166731.dkr.ecr.us-east-1.amazonaws.com/app_repo:latest'
