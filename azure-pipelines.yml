@@ -21,7 +21,7 @@ steps:
 - task: trivy@1
   inputs:
     version: 'latest'
-    image: 'app_repo'
+    image: '242451166731.dkr.ecr.us-east-1.amazonaws.com/app_repo'
     severities: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
     exitCode: '1'
 
