@@ -21,20 +21,7 @@ steps:
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
     
-- task: CmdLine@2
-  displayName: "Download and Install Trivy"
-  inputs:
-    script: |
-      sudo apt-get install wget apt-transport-https gnupg lsb-release
-      wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-      echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
-      sudo apt-get update
-      sudo apt-get install trivy
-- task: CmdLine@2
-  displayName: Scan
-  inputs:
-    script: |
-      trivy image thsre/node-app:latest
+
 
 - task: SonarQubePrepare@5
   inputs:
@@ -46,6 +33,14 @@ steps:
 - task: SonarQubeAnalyze@5
   inputs:
     jdkVersion: 'JAVA_HOME_11_X64'
+
+- task: trivy@1
+  inputs:
+    version: 'latest'
+    path: './app'
+    loginDockerConfig: true
+    image: 'node-app'
+    severities: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
 
 - task: dependency-check-build-task@6
   inputs:
