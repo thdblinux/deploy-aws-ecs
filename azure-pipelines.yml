@@ -19,10 +19,20 @@ jobs:
   - task: Docker@2
     inputs:
       containerRegistry: 'docker'
-      repository: 'thsre/node-app'
+      repository: '$(imageName)'
       command: 'buildAndPush'
       Dockerfile: '**/Dockerfile'
-      
+
+  - task: ECRPushImage@1
+    inputs:
+      awsCredentials: 'aws'
+      regionName: 'us-east-1'
+      imageSource: 'imageid'
+      sourceImageId: '$(imageName):$(Build.Build)'
+      repositoryName: '$(repoName)'
+      pushTag: '$(Build.Build)'
+      forceDockerNamingConventions: true
+        
   - task: SonarQubePrepare@5
     inputs:
       SonarQube: 'deploy-aws-ecs'
