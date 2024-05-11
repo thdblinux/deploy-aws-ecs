@@ -27,12 +27,11 @@ jobs:
     inputs:
       awsCredentials: 'aws'
       regionName: 'us-east-1'
-      imageSource: 'imagename'
-      sourceImageName: '242451166731.dkr.ecr.us-east-1.amazonaws.com/app_repo:latest'
+      imageSource: 'imageid'
+      sourceImageId: '242451166731.dkr.ecr.us-east-1.amazonaws.com/app_repo:latest'
       repositoryName: 'app_repo'
-      pushTag: 'app_repo'
       forceDockerNamingConventions: true
-        
+
   - task: SonarQubePrepare@5
     inputs:
       SonarQube: 'deploy-aws-ecs'
