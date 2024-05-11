@@ -14,26 +14,15 @@ steps:
     npm install
   displayName: 'npm install and build'
 
-- script: |
-    docker build -t app_repo ./app
-  displayName: 'Build Docker Image'
-
-- task: trivy@1
+- task: SonarQubePrepare@5
   inputs:
-    version: 'latest'
-    image: '242451166731.dkr.ecr.us-east-1.amazonaws.com/app_repo'
-    severities: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
-    exitCode: '1'
-
+    SonarQube: 'sonarqube'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'deploy-aws-ecs'
+    cliProjectName: 'deploy-aws-ecs'
+    cliSources: '.'
+    extraProperties: 'sonar.node.binares=.'
 - task: SonarQubeAnalyze@5
   inputs:
-    jdkVersion: 'JAVA_HOME_11_X64'
-    ignoreUnfixed: true
-    devMode: true
-- task: ECRPushImage@1
-  inputs:
-    awsCredentials: 'aws_connection'
-    regionName: $(AWS_REGION)
-    imageSource: $(Build.BuildId)
-    sourceImageName: $(AWS_ECR_MAGE_URI)
-    repositoryName: $(AWS_ECR_REPOSITORY_NAME)
+    jdkversion: 'JAVA_HOME_11_X64'
