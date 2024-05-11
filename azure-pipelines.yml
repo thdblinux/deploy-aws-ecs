@@ -31,6 +31,10 @@ steps:
   inputs:
     version: 'latest'
     path: '$(Build.SourcesDirectory)'
+- task: trivy@1
+  inputs:
+    version: 'latest'
+    path: '$(Build.SourcesDirectory)'
 
 - task: SonarQubeAnalyze@5
   inputs:
