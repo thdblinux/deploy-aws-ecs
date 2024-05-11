@@ -21,7 +21,6 @@ steps:
 - task: trivy@1
   inputs:
     version: 'latest'
-    path: '.'
     image: '$(AWS_ECR_MAGE_URI)'
     severities: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
     exitCode: '0'
