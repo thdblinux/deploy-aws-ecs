@@ -38,7 +38,7 @@ steps:
   inputs:
     version: 'latest'
     path: './app'
-    loginDockerConfig: true
+    loginDockerConfig: false
     image: 'node-app'
     severities: 'CRITICAL,HIGH,MEDIUM,LOW,UNKNOWN'
 
