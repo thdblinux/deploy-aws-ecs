@@ -32,15 +32,6 @@ jobs:
   - script: echo $(pull-passed)
   - script: echo $(push-passed)
 
-  - task: ECRPushImage@1
-    inputs:
-      awsCredentials: 'aws'
-      regionName: 'us-east-1'
-      imageSource: 'imageid'
-      sourceImageId: '242451166731.dkr.ecr.us-east-1.amazonaws.com/app_repo:latest'
-      repositoryName: 'app_repo'
-      forceDockerNamingConventions: true
-
   - task: SonarQubePrepare@5
     inputs:
       SonarQube: 'sonarqube'
