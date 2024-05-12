@@ -22,36 +22,36 @@ jobs:
     displayName: 'npm install and build' 
 
   - script: echo $(docker-passed)
-  - task: ECRPullImage@1
-    inputs:
-      awsCredentials: 'aws'
-      regionName: 'us-east-1'
-      repository: 'app_repo'
-      imageSource: 'imagetag'
+  # - task: ECRPullImage@1
+  #   inputs:
+  #     awsCredentials: 'aws'
+  #     regionName: 'us-east-1'
+  #     repository: 'app_repo'
+  #     imageSource: 'imagetag'
 
-  - task: ECRPushImage@1
-    inputs:
-      awsCredentials: 'aws'
-      regionName: 'us-east-1'
-      imageSource: 'imageid'
-      sourceImageId: '242451166731.dkr.ecr.us-east-1.amazonaws.com/app_repo:latest'
-      repositoryName: 'app_repo'
-      forceDockerNamingConventions: true
+  # - task: ECRPushImage@1
+  #   inputs:
+  #     awsCredentials: 'aws'
+  #     regionName: 'us-east-1'
+  #     imageSource: 'imageid'
+  #     sourceImageId: '242451166731.dkr.ecr.us-east-1.amazonaws.com/app_repo:latest'
+  #     repositoryName: 'app_repo'
+  #     forceDockerNamingConventions: true
 
-  - task: SonarQubePrepare@5
-    inputs:
-      SonarQube: 'sonarqube'
-      scannerMode: 'CLI'
-      configMode: 'file'
-      extraProperties: 'sonar.projectKey=node-app'
+  # - task: SonarQubePrepare@5
+  #   inputs:
+  #     SonarQube: 'sonarqube'
+  #     scannerMode: 'CLI'
+  #     configMode: 'file'
+  #     extraProperties: 'sonar.projectKey=node-app'
 
-  - task: SonarQubeAnalyze@5
-    inputs:
-      jdkVersion: 'JAVA_HOME_11_X64'
+  # - task: SonarQubeAnalyze@5
+  #   inputs:
+  #     jdkVersion: 'JAVA_HOME_11_X64'
 
-  - task: dependency-check-build-task@6
-    inputs:
-      projectName: 'deploy-aws-ecs'
-      scanPath: '.'
-      format: 'HTML'
-      uploadReports: true
+  # - task: dependency-check-build-task@6
+  #   inputs:
+  #     projectName: 'deploy-aws-ecs'
+  #     scanPath: '.'
+  #     format: 'HTML'
+  #     uploadReports: true
