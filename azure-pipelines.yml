@@ -39,13 +39,6 @@ jobs:
   - script: echo $(repository)
   - script: echo $(passed-variable)
   - script: echo $(mando)
-      
-  - task: ECRPullImage@1
-    inputs:
-      awsCredentials: 'aws'
-      regionName: 'us-east-1'
-      repository: 'app_repo'
-      imageSource: 'imagetag'
 
   - task: ECRPushImage@1
     inputs:
