@@ -11,6 +11,9 @@ variables:
 - group: ecrpull
 - name: passed-variable
   value: $[variables.pullpassed]
+- group: ecrpush
+- name: passed-variable
+  value: $[variables.pushpassed]
 
 
 jobs:
@@ -27,6 +30,7 @@ jobs:
 
   - script: echo $(docker-passed)
   - script: echo $(pull-passed)
+  - script: echo $(push-passed)
 
   - task: ECRPushImage@1
     inputs:
