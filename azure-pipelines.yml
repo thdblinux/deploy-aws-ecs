@@ -24,6 +24,7 @@ jobs:
   - script: echo $(command)
   - script: echo $(containerRegistry)
   - script: echo $(repository)
+  - script: echo $(passed-variable)
       
   # - task: ECRPullImage@1
   #   inputs:
