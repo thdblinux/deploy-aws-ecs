@@ -61,6 +61,8 @@ jobs:
       SonarQube: 'sonarqube'
       scannerMode: 'CLI'
       configMode: 'manual'
+      cliProjectKey: 'node-app'
+      cliProjectName: 'node-app'
       cliSources: '.'
       extraProperties: 'sonar.projectKey=node-app'
 
