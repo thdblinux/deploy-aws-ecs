@@ -11,15 +11,8 @@ variables:
   value: $[variables.mando]
 
 - group: ecr-aws
-- name: awsCredentials
-  value: $[variables.ecraws]
-- name: imageSource
-  value: $[variables.ecraws]
-- name: regionName
-  value: $[variables.ecraws]
-- name: repository
-  value: $[variables.ecraws]
 
+- group: ecs-aws
 
 jobs:
 - job:
@@ -39,15 +32,6 @@ jobs:
   - script: echo $(repository)
   - script: echo $(passed-variable)
   - script: echo $(mando)
-
-  - task: ECRPushImage@1
-    inputs:
-      awsCredentials: 'aws'
-      regionName: 'us-east-1'
-      imageSource: 'imageid'
-      sourceImageId: '242451166731.dkr.ecr.us-east-1.amazonaws.com/app_repo:latest'
-      repositoryName: 'app_repo'
-      forceDockerNamingConventions: true
 
   - task: SonarQubePrepare@5
     inputs:
