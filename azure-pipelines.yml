@@ -6,12 +6,7 @@ pool:
 
 variables:
 - group: docker-aws
-- group: beskar-mandalor-group
-- name: passed-variable
-  value: $[variables.mando]
-
 - group: ecr-aws
-
 - group: ecs-aws
 
 jobs:
