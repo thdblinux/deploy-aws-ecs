@@ -5,7 +5,9 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-- group: docker-aws 
+- group: docker-aws
+- name: passed-variable
+  value: $[variables.docker]
 
 jobs:
 - job:
