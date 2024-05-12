@@ -8,7 +8,7 @@ variables:
 - group: docker-aws
 - group: beskar-mandalor-group
 - name: passed-variable
-  value: $[variables.beskarmandalor]
+  value: $[variables.mando]
 
 jobs:
 - job:
@@ -26,7 +26,7 @@ jobs:
   - script: echo $(containerRegistry)
   - script: echo $(repository)
   - script: echo $(passed-variable)
-  - script: echo $(myvariable)
+  - script: echo $(mando)
       
   # - task: ECRPullImage@1
   #   inputs:
