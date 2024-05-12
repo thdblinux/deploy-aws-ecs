@@ -49,3 +49,4 @@ jobs:
       scanPath: '.'
       format: 'HTML'
       uploadReports: true
+      failOnCVSS: '7'
