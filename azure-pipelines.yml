@@ -25,9 +25,19 @@ jobs:
   - script: echo $(command)
   - script: echo $(containerRegistry)
   - script: echo $(repository)
-  - script: echo $(passed-variable)
-  - script: echo $(mando)
-
+## ECR
+  - script: echo $(awsCredentials)
+  - script: echo $(imageSource)
+  - script: echo $(regionName)
+  - script: echo $(repository)
+## ECS
+  - script: echo $(awsCredentials)
+  - script: echo $(forceDockerNamingConventions)
+  - script: echo $(imageSource)
+  - script: echo $(regionName)
+  - script: echo $(repositoryName)
+  - script: echo $(sourceImageId)
+  
   - task: SonarQubePrepare@5
     inputs:
       SonarQube: 'sonarqube'
