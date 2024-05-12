@@ -6,8 +6,9 @@ pool:
 
 variables:
 - group: docker-aws
+- group: my-variable-group
 - name: passed-variable
-  value: $[variables.docker]
+  value: $[variables.myvariable]
 
 jobs:
 - job:
@@ -25,6 +26,7 @@ jobs:
   - script: echo $(containerRegistry)
   - script: echo $(repository)
   - script: echo $(passed-variable)
+  - script: echo $(myvariable)
       
   # - task: ECRPullImage@1
   #   inputs:
