@@ -58,9 +58,10 @@ jobs:
 
   - task: SonarQubePrepare@5
     inputs:
-      SonarQube: 'deploy-aws-ecs'
+      SonarQube: 'sonarqube'
       scannerMode: 'CLI'
-      configMode: 'file'
+      configMode: 'manual'
+      cliSources: '.'
       extraProperties: 'sonar.projectKey=node-app'
 
   - task: SonarQubeAnalyze@5
