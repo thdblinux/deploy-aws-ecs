@@ -3,29 +3,29 @@ provider "aws" {
 }
 
 
-# resource "aws_s3_bucket" "b" {
-#   bucket        = "matrioska-kan"
-#   acl           = "private"
-#   force_destroy = true
+  resource "aws_s3_bucket" "b" {
+    bucket        = "matrioska-kan"
+    acl           = "private"
+    force_destroy = true
 
-#   versioning {
-#     enabled = true
-#   }
+    versioning {
+      enabled = true
+    }
 
-#   tags = {
-#     Name        = "beskar"
-#     Environment = "Stg"
-#   }
-# }
+    tags = {
+      Name        = "beskar"
+      Environment = "Stg"
+    }
+  }
 
-# terraform {
-#   backend "s3" {
-#     bucket         = "matrioska-kan"
-#     key            = "terraform.tfstate"
-#     region         = "us-east-1"
-#     encrypt        = true
-#   }
-# }
+  terraform {
+    backend "s3" {
+      bucket         = "matrioska-kan"
+      key            = "terraform.tfstate"
+      region         = "us-east-1"
+      encrypt        = true
+    }
+  }
 
 data "aws_ami" "ubuntu" {
   most_recent = true
